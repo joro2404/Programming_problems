@@ -33,9 +33,6 @@ while(1):
 #print(arr)
 
 
-
-
-
 '''
 choice=1
 while choice!=0:
