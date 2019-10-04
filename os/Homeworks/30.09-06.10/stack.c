@@ -27,12 +27,13 @@ void stack_init( stack *stack ){
 
 void stack_destroy( stack *stack ){
 
-    free(stack);
+    free(stack->elements);
 }
 
 int stack_empty( stack *stack ){
 
-    return stack->size;
+    if(stack->size == 0)return 1;
+    return 0;
 }
 void stack_push( stack *stack, int n){
 
@@ -43,14 +44,13 @@ void stack_push( stack *stack, int n){
 
 int stack_top( stack *stack ){
 
-    return stack->elements[stack->size];
+    return stack->elements[stack->size-1];
 }
 
 void stack_pop( stack *stack ){
 
     stack->elements = (int*)realloc(stack->elements, (--stack->size) * sizeof(int));
 }
-
 int main () {
 
     stack stack;
@@ -58,11 +58,10 @@ int main () {
     printf("stack is empty -> %d\n", stack_empty(&stack));
 
     stack_push(&stack, 1);
-    //stack_push(&stack, 2);
-    //stack_push(&stack, 3);
-
-    printf("stack is empty -> %d\n", stack_empty(&stack));
-
+    stack_push(&stack, 2);
+    stack_push(&stack, 3);
+    stack_push(&stack, 4);
+    
     stack_pop(&stack);
     
     printf("top element in stack -> %d\n", stack_top(&stack));
