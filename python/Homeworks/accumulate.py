@@ -24,4 +24,4 @@ def accumulate_right(lam, n, arr):
 
 
 print(accumulate_left(lambda a, b: a / b, 64, [2, 4, 8]))
-print(accumulate_right(lambda a, b: a / b, 2, [8, 12, 24, 4]))
+print(accumulate_right(lambda a, b: a / b, 8, [16, 32, 64]))

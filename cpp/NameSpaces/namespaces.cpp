@@ -5,7 +5,14 @@ namespace firstSpace{
 
     void say_hello(){
 
-        cout << "Hello from frist namespace" << endl;
+        cout << "Hello from frist namespace" << std::endl;
+    }
+
+    namespace innerSpace {
+        void say_hello(){
+
+            cout << "Hello from inner namespace" << std::endl;
+        }
     }
 };
 
@@ -13,13 +20,15 @@ namespace secondSpace {
 
     void say_hello() {
 
-        cout << "Hello from namespace" << endl;
+        cout << "Hello from second namespace" << std::endl;
     }
 };
 
-using namespace firstSpace;
+using namespace firstSpace::innerSpace;
 
 int main() {
 
     say_hello();
+    secondSpace::say_hello();
+
 }
