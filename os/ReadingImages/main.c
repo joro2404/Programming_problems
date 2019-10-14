@@ -20,8 +20,8 @@ int main( int argc, const char* argv[] ) {
 		printf("Unable to parse file\n");
 		return 0;
 	}
-	int file_length = 0;
 
+	int file_length = 0;
 	buff += 8;
 	whole_file += 8;
 	file_length += 8;
