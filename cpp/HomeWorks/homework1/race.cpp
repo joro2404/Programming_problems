@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <bits/stdc++.h> 
 using namespace std;
 
 class Contestant {
@@ -49,6 +50,13 @@ class Race {
 
     public:
 
+        Race(){}
+
+        Race(vector<Contestant> contestants){
+
+            this->contestants = contestants;
+        }
+
         vector<Contestant> getContestants(){
 
             return contestants;
@@ -63,7 +71,62 @@ class Race {
 
             for(int i=0;i<contestants.size();i++){
                 
-                contestants[i].getDistance(0);
+                contestants[i].calcDistance(0);
             }
         }
+
+        vector<Contestant> simulateRace(int iteration_count){
+
+            vector<double> dist;
+            vector<Contestant> sorted;
+
+            resetContestants();
+
+            for(int i=0;i<contestants.size();i++){
+
+                contestants[i].calcDistance(iteration_count);
+
+                //if(i == 0 || dist[i-1].getDistance < contestants[i].getDistance )dist.push_back(contestants[i]);
+            }
+
+            for(int i=0;i<contestants.size();i++){
+
+                dist[i] = contestants[i].getDistance();
+            }
+
+            sort(dist.begin(), dist.end());
+
+            for(int i=0;i<dist.size();i++){
+
+                for(int j=0;j<contestants.size();j++){
+                    
+                    if(dist[i] == contestants[j].getDistance())sorted.push_back(contestants[j]);
+                }
+            }
+
+            return sorted;
+        }
+
+        string getContestantStanding() {
+
+            int iteration_count = 5;            
+            vector<Contestant> sorted = simulateRace(iteration_count);
+
+            ostringstream out;
+
+
+            for(int i=0;i<sorted.size();i++){
+
+                out << sorted[i].getName() << ": "<< sorted[i].getDistance << '(' << sorted[i].getSpeed << " km/h)\n";
+            }
+                
+            string data = out.str();
+
+            return data;
+        }
 };
+
+int main() {
+
+    return 0;
+}
