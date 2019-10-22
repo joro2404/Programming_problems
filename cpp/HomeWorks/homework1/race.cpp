@@ -117,7 +117,7 @@ class Race {
 
             for(int i=0;i<sorted.size();i++){
 
-                out << sorted[i].getName() << ": "<< sorted[i].getDistance << '(' << sorted[i].getSpeed << " km/h)\n";
+                out << sorted[i].getName() << ": " << sorted[i].getDistance() << '(' << sorted[i].getSpeed() << " km/h)\n";
             }
                 
             string data = out.str();
