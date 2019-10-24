@@ -129,7 +129,7 @@ int main() {
     }
 
     try{
-        CarCatalogue CarCatalogue("BMVto", models);
+        CarCatalogue CarCatalogue("BMVdf", models);
         string data = CarCatalogue.toString();
         cout << data<< endl;
         CarCatalogue.addModel(name);

@@ -5,11 +5,12 @@ using namespace std;
 
 int main() {
 
-    string data = "3.1415 2ke";
+    string data = "ke 3.1415 2ke";
 
     istringstream in(data);
 
     double pi;
+    in.ignore(2);
     in >> pi;
 
     if(in.good()){

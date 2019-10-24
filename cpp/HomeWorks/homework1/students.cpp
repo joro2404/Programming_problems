@@ -85,7 +85,7 @@ class StudentInfo {
                 out << marks[i] << " ";
             }
 
-            out << "\naverage: " <<getAverage();
+            out << "\naverage: " << getAverage();
                 
             string data = out.str();
             
@@ -108,5 +108,10 @@ int main() {
         cout << ex.what() << endl;
     }
     cout << stu.toString() << endl;
+
+    vector<double> m = stu.getMarks();
+    for(int i=0;i<m.size();i++){
+        printf("%f\n", m[i]);
+    }
     return 1;
 }

@@ -135,7 +135,7 @@ int main() {
 	string data = race1.simulateRace(10);
 	cout << data << endl;
 	
-	/*istringstream in(data);
+	istringstream in(data);
 	double speed_of_vesko;
 	string name_of_vesko;
 	in >> name_of_vesko;
@@ -144,7 +144,7 @@ int main() {
 	cout << speed_of_vesko << endl;
 	cout << name_of_vesko << '!' << endl;
 	
-	*/
+	
 	
 	return 1;
 }
