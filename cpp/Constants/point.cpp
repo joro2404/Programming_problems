@@ -70,6 +70,7 @@ int main(){
     b.print();
 
     change(a ,b);
+    //a.set_x(8);
     a.print();
     b.print();
 }
