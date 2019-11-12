@@ -1,4 +1,18 @@
-def is_stronger(a, b):
+def group_by_f(f, lst):
+    dct = {}
+        
+    for i in range(0, len(lst)):
+        if f(lst[i]) not in dct :
+            dct[f(lst[i])] = []
+            
+    for i in dct:
+        for j in range(0, len(lst)):
+            if f(lst[j]) == i : #zashto ne raboti dct[i] ?
+                dct[i].append(lst[j])
+
+    return dct
+
+def isStronger(a, b):
     a_names_and_quantity = {}
     b_names_and_quantity = {}
     counter = 0
@@ -29,7 +43,7 @@ def is_stronger(a, b):
     return True
 
 
-def least_stronger(a, arr):
+def leastStronger(a, arr):
     least = 0
     best = ()
     curr_of_a = 0
@@ -37,7 +51,7 @@ def least_stronger(a, arr):
         curr_of_a += j[1]
 
     for i in arr :
-        if is_stronger(i,a):
+        if isStronger(i,a):
             curr = 0
             for j in a[1]:
                 for p in i[1]:
@@ -56,13 +70,13 @@ def least_stronger(a, arr):
 
     return best
 
-def strong_relation(l):
+def strongRelation(l):
     res = []
     for i in l:
         lst = []
         curr = ()
         for j in l:
-            if is_stronger(j ,i) and i != j:
+            if isStronger(j ,i) and i != j:
                 lst.append(j[0])
                 
         curr = (i, lst)
@@ -71,18 +85,29 @@ def strong_relation(l):
 
     return res
 
+def maxNotes(p):
+    res = 0
 
-A = ("A", [("p",5), ("q", 3), ("t", 1)])
-B = ("B", [("p",4), ("q", 3)])
-C = ("C", [("p",3)])
-D = ("D", [("p",5), ("q", 3), ("t", 2)])
+    for i in p:
+        if sum(i) > res:
+            res = sum(i)
 
-print(is_stronger(A,B))
-print(is_stronger(A,C))
-print(is_stronger(C, A))
-print(is_stronger(D ,A))
+    return res
 
-print(least_stronger(B, [A, C, D]))
+def leading(p):
+    lst = []
+    maxx = 0
+    index = 0
 
-l = [A, B, C, D]
-strong_relation(l)
+    for i in range(0, len(p[1])):
+        for j in range(0, len(p)):
+            if p[j][i] > maxx:
+                maxx = p[j][i]
+                index = j
+
+        lst.append(index)
+        maxx = 0
+        index = 0
+
+    print(lst)
+    return max(set(lst), key=lst.count)
