@@ -1,4 +1,5 @@
 from database import DB
+from comment import Comment
 
 class Post:
     def __init__(self, id, name, author, content):
@@ -15,9 +16,9 @@ class Post:
             return [Post(*row) for row in rows]
 
     @staticmethod
-    def fid(id):
+    def find(id):
         with DB() as db:
-            rows = db.execute('SELECT * FROM posts WHERE id = ?', (id,)).fetchone()
+            row = db.execute('SELECT * FROM posts WHERE id = ?', (id,)).fetchone()
             return Post(*row)
 
     def create(self):
@@ -25,3 +26,16 @@ class Post:
             values = (self.name, self.author, self.content)
             rows = db.execute('INSERT INTO posts(name, author, content) VALUES (?, ?, ?)', values)
             return self
+
+    def save(self):
+        with DB() as db:
+            values = (self.name, self.author, self.content, self.id)
+            db.execute('UPDATE posts SET name = ?, author = ?, content = ? WHERE id = ?', values)
+            return self
+
+    def delete(self):
+        with DB() as db:
+            db.execute('DELETE FROM posts WHERE id = ?', (self.id,))
+
+    def comments(self):
+        return Comment.find_by_post(self)
