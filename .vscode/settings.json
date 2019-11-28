@@ -6,6 +6,5 @@
         "vector": "cpp",
         "list": "cpp",
         "*.tcc": "cpp"
-    },
-    "git.ignoreLimitWarning": true
+    }
 }
